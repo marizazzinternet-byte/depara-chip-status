@@ -36,17 +36,22 @@
       "emoji": "🟡"
     },
     {
+      "titulo": "Setup pro Cloudflare — Relatório completo protegido por login",
+      "status": "Status nao informado",
+      "emoji": "🟡"
+    },
+    {
       "titulo": "Spec — Página de status do Depara CHIP (dashboard simples)",
       "status": "Implementado pelo @dev (código pronto) — falta provisionamento de infra pelo @devops (ver `docs/specs/status-dashboard-DEVOPS-SETUP.md`) antes de ir ao ar",
       "emoji": "🟡"
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-20T22:21:18.703Z",
+    "verificado_em": "2026-08-20T23:21:39.908Z",
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-20T22:21:22.691Z",
+  "atualizado_em": "2026-08-20T23:21:41.031Z",
   "ultima_rodada": {
     "data": "2026-08-20T22:21:22.691Z",
     "sucesso": false,
