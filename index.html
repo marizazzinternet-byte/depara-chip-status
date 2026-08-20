@@ -1,1 +1,176 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Depara CHIP - Status</title></head><body><p>Aguardando primeira rodada do pipeline...</p></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status - Depara CHIP</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    background: #f2f4f7;
+    color: #1c1c1c;
+  }
+  header {
+    background: #1a2b45;
+    color: #fff;
+    padding: 22px 20px;
+  }
+  header h1 { margin: 0 0 4px 0; font-size: 20px; }
+  header p { margin: 0; opacity: .85; font-size: 12.5px; }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 18px 16px 40px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .card h2 {
+    margin: 0 0 10px 0;
+    font-size: 14.5px;
+    color: #1a2b45;
+  }
+  .linha { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; font-size: 13.5px; line-height: 1.5; }
+  .linha:last-child { margin-bottom: 0; }
+  .status-ok { color: #1a7d3a; font-weight: 600; }
+  .status-erro { color: #a5322b; font-weight: 600; }
+  .status-espera { color: #8a6100; font-weight: 600; }
+  a { color: #2d5fb0; }
+  .muted { color: #666; font-size: 12px; }
+  ul.pendencias { list-style: none; margin: 0; padding: 0; }
+  ul.pendencias li { padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13.5px; }
+  ul.pendencias li:last-child { border-bottom: none; }
+  footer { text-align: center; font-size: 11.5px; color: #999; padding: 10px 16px 30px; }
+  .loading { color: #999; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Depara CHIP - Status</h1>
+  <p>Acompanhamento automatico do cruzamento RBX x TelOS x Surf. Sem dado de cliente nesta pagina -- so datas, status e contagens.</p>
+</header>
+<main>
+
+  <div class="card">
+    <h2>1. Ultima rodada</h2>
+    <div id="rodada"><span class="loading">Carregando...</span></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Lembrete mensal da Surf</h2>
+    <div id="lembrete"><span class="loading">Carregando...</span></div>
+  </div>
+
+  <div class="card">
+    <h2>3. Pendencias conhecidas</h2>
+    <ul class="pendencias" id="pendencias"><li class="loading">Carregando...</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Proxima rodada agendada</h2>
+    <div id="proxima"></div>
+  </div>
+
+  <p class="muted" id="atualizado-em"></p>
+</main>
+<footer>Gerado automaticamente pelo workflow do GitHub Actions a cada rodada. Uso interno.</footer>
+
+<script>
+function fmtData(iso) {
+  if (!iso) return null;
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return iso;
+  return d.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" }) + " (horario de Brasilia)";
+}
+
+function proximaOcorrencia(diaSemanaAlvo, hora) {
+  // diaSemanaAlvo: 0=domingo ... 1=segunda
+  var agora = new Date();
+  var d = new Date(agora);
+  d.setHours(hora, 0, 0, 0);
+  var diff = (diaSemanaAlvo - d.getDay() + 7) % 7;
+  if (diff === 0 && d <= agora) diff = 7;
+  d.setDate(d.getDate() + diff);
+  return d;
+}
+
+function proximoDiaDoMes(diaAlvo, hora) {
+  var agora = new Date();
+  var d = new Date(agora.getFullYear(), agora.getMonth(), diaAlvo, hora, 0, 0, 0);
+  if (d <= agora) d = new Date(agora.getFullYear(), agora.getMonth() + 1, diaAlvo, hora, 0, 0, 0);
+  return d;
+}
+
+function renderRodada(r) {
+  var el = document.getElementById("rodada");
+  if (!r) { el.innerHTML = '<div class="linha muted">Ainda sem nenhuma rodada registrada.</div>'; return; }
+  var linhas = [];
+  if (r.sucesso) {
+    linhas.push('<div class="linha status-ok">&#9989; Rodou certinho em ' + fmtData(r.data) + '.</div>');
+  } else {
+    linhas.push('<div class="linha status-erro">&#10060; Falhou em ' + fmtData(r.data) + '.</div>');
+    if (r.etapa_falha) {
+      linhas.push('<div class="linha">Motivo: ' + r.etapa_falha + '</div>');
+    }
+  }
+  if (r.run_url) {
+    linhas.push('<div class="linha"><a href="' + r.run_url + '" target="_blank" rel="noopener">Ver detalhes e baixar o relatorio (precisa estar logado no GitHub)</a></div>');
+  }
+  el.innerHTML = linhas.join("");
+}
+
+function renderLembrete(l) {
+  var el = document.getElementById("lembrete");
+  if (!l) { el.innerHTML = '<div class="linha muted">Ainda sem nenhuma verificacao registrada.</div>'; return; }
+  var linhas = [];
+  if (l.base_chegou) {
+    linhas.push('<div class="linha status-ok">&#9989; A base ZAZZ desse mes ja chegou.</div>');
+  } else {
+    linhas.push('<div class="linha status-espera">&#9888;&#65039; A base ZAZZ desse mes ainda nao chegou' + (l.lembrete_enviado_em ? (' -- lembrete enviado em ' + fmtData(l.lembrete_enviado_em)) : '') + '.</div>');
+  }
+  linhas.push('<div class="linha muted">Ultima verificacao: ' + fmtData(l.verificado_em) + '</div>');
+  el.innerHTML = linhas.join("");
+}
+
+function renderPendencias(lista) {
+  var el = document.getElementById("pendencias");
+  if (!lista || !lista.length) { el.innerHTML = '<li class="muted">Nenhuma pendencia registrada.</li>'; return; }
+  el.innerHTML = lista.map(function(p) {
+    return '<li>' + p.emoji + ' <b>' + p.titulo + '</b><br><span class="muted">' + p.status + '</span></li>';
+  }).join("");
+}
+
+function renderProxima() {
+  var semanal = proximaOcorrencia(1, 8); // segunda-feira, 08h
+  var mensal = proximoDiaDoMes(4, 9); // dia 4, 09h
+  document.getElementById("proxima").innerHTML =
+    '<div class="linha">Proxima verificacao completa: ' + fmtData(semanal.toISOString()) + '</div>' +
+    '<div class="linha">Proxima checagem da planilha da Surf: ' + fmtData(mensal.toISOString()) + '</div>';
+}
+
+fetch("status.json", { cache: "no-store" })
+  .then(function(r) { return r.json(); })
+  .then(function(status) {
+    renderRodada(status.ultima_rodada);
+    renderLembrete(status.lembrete_surf);
+    renderPendencias(status.pendencias);
+    if (status.atualizado_em) {
+      document.getElementById("atualizado-em").textContent = "Pagina atualizada em " + fmtData(status.atualizado_em);
+    }
+  })
+  .catch(function() {
+    document.getElementById("rodada").innerHTML = '<div class="linha status-erro">Nao consegui carregar status.json.</div>';
+    document.getElementById("lembrete").innerHTML = "";
+    document.getElementById("pendencias").innerHTML = "";
+  });
+
+renderProxima();
+</script>
+</body>
+</html>

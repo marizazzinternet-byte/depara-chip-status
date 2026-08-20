@@ -1,1 +1,50 @@
-{}
+{
+  "pendencias": [
+    {
+      "titulo": "QA Fix Request: `gen_detalhado.py`/`gen_consolidado.py` — inputs ausentes no pipeline",
+      "status": "Parcialmente corrigido pelo @dev (2026-08-20):",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "QA Fix Request: gen_portout.py — validação end-to-end (dados reais)",
+      "status": "[x] Fixed (Opção A aplicada: `fetch-data.js`/`fetch-surf-email.js` agora escrevem em",
+      "emoji": "✅"
+    },
+    {
+      "titulo": "Fix Request: `gen_resolvidos_final.py`/`gen_titularidade.py`/`gen_multiplos.py` — inputs ausentes",
+      "status": "Status nao informado",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "Mapeamento de queries — Categoria A / Categoria B",
+      "status": "Implementado pelo @dev (2026-08-20) — 2 queries novas em `fetch-data.js` (`cat_b_clientes`,",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "Spec — completar `fetch-data.js` com as queries de Categoria A / Categoria B",
+      "status": "Implementado (ver `gen_categorias-ab-queries-mapeadas.md` pro mapeamento e status detalhado)",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "Spec — `gen_portout.py` (formalizar validação de portabilidade/portout)",
+      "status": "Ready for dev",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "Setup pro @devops — Página de status (GitHub Pages em repo separado)",
+      "status": "Status nao informado",
+      "emoji": "🟡"
+    },
+    {
+      "titulo": "Spec — Página de status do Depara CHIP (dashboard simples)",
+      "status": "Implementado pelo @dev (código pronto) — falta provisionamento de infra pelo @devops (ver `docs/specs/status-dashboard-DEVOPS-SETUP.md`) antes de ir ao ar",
+      "emoji": "🟡"
+    }
+  ],
+  "lembrete_surf": {
+    "verificado_em": "2026-08-20T18:22:32.017Z",
+    "base_chegou": true,
+    "lembrete_enviado_em": null
+  },
+  "atualizado_em": "2026-08-20T18:22:33.692Z"
+}
