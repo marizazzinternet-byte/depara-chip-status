@@ -36,6 +36,16 @@
       "emoji": "🟡"
     },
     {
+      "titulo": "Investigação — registros \"só no TelOS\" (sem vínculo com RBX)",
+      "status": "✅ Concluído — identidade RBX dos 5 clientes confirmada, nenhuma correção automática aplicada",
+      "emoji": "✅"
+    },
+    {
+      "titulo": "Spec — Rodada diária + tela do que foi corrigido",
+      "status": "Implementado pelo @dev (21/08/2026) — cron diário + seção \"o que foi corrigido\" no status.json/index.html. Pendente validação end-to-end em produção (bloqueio do Metabase segue aberto, ver memória do projeto — sem fetch fresco não há categorias-contagem.json novo pra comparar).",
+      "emoji": "🔴"
+    },
+    {
       "titulo": "Setup pro @devops — Página de status (GitHub Pages em repo separado)",
       "status": "Status nao informado",
       "emoji": "🟡"
@@ -52,11 +62,11 @@
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-21T19:42:29.464Z",
+    "verificado_em": "2026-08-21T20:17:26.935Z",
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-21T19:43:34.127Z",
+  "atualizado_em": "2026-08-21T20:17:28.128Z",
   "ultima_rodada": {
     "data": "2026-08-21T19:43:34.126Z",
     "sucesso": true,

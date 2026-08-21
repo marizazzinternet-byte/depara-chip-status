@@ -46,6 +46,10 @@
   ul.pendencias { list-style: none; margin: 0; padding: 0; }
   ul.pendencias li { padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13.5px; }
   ul.pendencias li:last-child { border-bottom: none; }
+  ul.correcoes { list-style: none; margin: 0; padding: 0; }
+  ul.correcoes li { padding: 5px 0; font-size: 13.5px; }
+  .correcao-resolvido { color: #1a7d3a; }
+  .correcao-novo { color: #a5322b; }
   footer { text-align: center; font-size: 11.5px; color: #999; padding: 10px 16px 30px; }
   .loading { color: #999; font-size: 13px; }
 </style>
@@ -62,18 +66,23 @@
     <div id="rodada"><span class="loading">Carregando...</span></div>
   </div>
 
+  <div class="card" id="card-correcoes" style="display:none;">
+    <h2>2. O que foi corrigido desde a ultima rodada</h2>
+    <ul class="correcoes" id="correcoes"></ul>
+  </div>
+
   <div class="card">
-    <h2>2. Lembrete mensal da Surf</h2>
+    <h2>3. Lembrete mensal da Surf</h2>
     <div id="lembrete"><span class="loading">Carregando...</span></div>
   </div>
 
   <div class="card">
-    <h2>3. Pendencias conhecidas</h2>
+    <h2>4. Pendencias conhecidas</h2>
     <ul class="pendencias" id="pendencias"><li class="loading">Carregando...</li></ul>
   </div>
 
   <div class="card">
-    <h2>4. Proxima rodada agendada</h2>
+    <h2>5. Proxima rodada agendada</h2>
     <div id="proxima"></div>
   </div>
 
@@ -89,14 +98,11 @@ function fmtData(iso) {
   return d.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" }) + " (horario de Brasilia)";
 }
 
-function proximaOcorrencia(diaSemanaAlvo, hora) {
-  // diaSemanaAlvo: 0=domingo ... 1=segunda
+function proximaOcorrenciaDiaria(hora) {
   var agora = new Date();
   var d = new Date(agora);
   d.setHours(hora, 0, 0, 0);
-  var diff = (diaSemanaAlvo - d.getDay() + 7) % 7;
-  if (diff === 0 && d <= agora) diff = 7;
-  d.setDate(d.getDate() + diff);
+  if (d <= agora) d.setDate(d.getDate() + 1);
   return d;
 }
 
@@ -138,6 +144,23 @@ function renderLembrete(l) {
   el.innerHTML = linhas.join("");
 }
 
+function renderCorrecoes(correcoes) {
+  var card = document.getElementById("card-correcoes");
+  var el = document.getElementById("correcoes");
+  // sem rodada anterior pra comparar, ou nada mudou -- a secao nao aparece (nao trava, nao mostra erro)
+  if (!correcoes || !correcoes.comparado_com_rodada_anterior) { card.style.display = "none"; return; }
+  var linhas = [];
+  (correcoes.resolvidos || []).forEach(function(r) {
+    linhas.push('<li class="correcao-resolvido">&#128200; Resolvidos: ' + r.quantidade + ' (' + r.categoria + ') -- ' + r.de + ' &rarr; ' + r.para + '</li>');
+  });
+  (correcoes.novos || []).forEach(function(n) {
+    linhas.push('<li class="correcao-novo">&#128201; Novos: ' + n.quantidade + ' (' + n.categoria + ') -- ' + n.de + ' &rarr; ' + n.para + '</li>');
+  });
+  if (!linhas.length) { card.style.display = "none"; return; }
+  el.innerHTML = linhas.join("");
+  card.style.display = "";
+}
+
 function renderPendencias(lista) {
   var el = document.getElementById("pendencias");
   if (!lista || !lista.length) { el.innerHTML = '<li class="muted">Nenhuma pendencia registrada.</li>'; return; }
@@ -147,10 +170,10 @@ function renderPendencias(lista) {
 }
 
 function renderProxima() {
-  var semanal = proximaOcorrencia(1, 8); // segunda-feira, 08h
+  var diaria = proximaOcorrenciaDiaria(8); // todo dia, 08h
   var mensal = proximoDiaDoMes(4, 9); // dia 4, 09h
   document.getElementById("proxima").innerHTML =
-    '<div class="linha">Proxima verificacao completa: ' + fmtData(semanal.toISOString()) + '</div>' +
+    '<div class="linha">Proxima verificacao completa: ' + fmtData(diaria.toISOString()) + '</div>' +
     '<div class="linha">Proxima checagem da planilha da Surf: ' + fmtData(mensal.toISOString()) + '</div>';
 }
 
@@ -158,6 +181,7 @@ fetch("status.json", { cache: "no-store" })
   .then(function(r) { return r.json(); })
   .then(function(status) {
     renderRodada(status.ultima_rodada);
+    renderCorrecoes(status.correcoes);
     renderLembrete(status.lembrete_surf);
     renderPendencias(status.pendencias);
     if (status.atualizado_em) {
@@ -166,6 +190,7 @@ fetch("status.json", { cache: "no-store" })
   })
   .catch(function() {
     document.getElementById("rodada").innerHTML = '<div class="linha status-erro">Nao consegui carregar status.json.</div>';
+    document.getElementById("card-correcoes").style.display = "none";
     document.getElementById("lembrete").innerHTML = "";
     document.getElementById("pendencias").innerHTML = "";
   });
