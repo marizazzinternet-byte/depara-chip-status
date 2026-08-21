@@ -56,11 +56,11 @@
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-21T19:32:52.632Z",
+  "atualizado_em": "2026-08-21T19:33:50.307Z",
   "ultima_rodada": {
-    "data": "2026-08-21T19:24:12.436Z",
+    "data": "2026-08-21T19:33:50.306Z",
     "sucesso": true,
     "etapa_falha": null,
-    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/32518168545"
+    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/32518996958"
   }
 }
