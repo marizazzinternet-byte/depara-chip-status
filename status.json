@@ -16,6 +16,11 @@
       "emoji": "🟡"
     },
     {
+      "titulo": "Fix Request: `trocas_chip.json` / `transferencias_completo.json` / `chips_multiplos.json` — lógica de negócio pendente de confirmação",
+      "status": "Status nao informado",
+      "emoji": "🟡"
+    },
+    {
       "titulo": "Mapeamento de queries — Categoria A / Categoria B",
       "status": "Implementado pelo @dev (2026-08-20) — 2 queries novas em `fetch-data.js` (`cat_b_clientes`,",
       "emoji": "🟡"
@@ -47,11 +52,11 @@
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-21T13:14:35.618Z",
+    "verificado_em": "2026-08-21T13:44:29.440Z",
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-21T13:15:05.262Z",
+  "atualizado_em": "2026-08-21T13:44:30.748Z",
   "ultima_rodada": {
     "data": "2026-08-21T13:15:05.261Z",
     "sucesso": false,
