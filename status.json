@@ -1,6 +1,11 @@
 {
   "pendencias": [
     {
+      "titulo": "QA Fix Request: expor-cliente-telos",
+      "status": "[x] Fixed — [x] QA re-reviewed and verified (2026-08-31, Quinn). Gate: PASS. See `expor-cliente-telos-spec.md` QA Re-Review section.",
+      "emoji": "✅"
+    },
+    {
       "titulo": "QA Fix Request: `gen_detalhado.py`/`gen_consolidado.py` — inputs ausentes no pipeline",
       "status": "Parcialmente corrigido pelo @dev (2026-08-20):",
       "emoji": "🟡"
@@ -19,6 +24,11 @@
       "titulo": "Fix Request: `trocas_chip.json` / `transferencias_completo.json` / `chips_multiplos.json` — lógica de negócio pendente de confirmação",
       "status": "Status nao informado",
       "emoji": "🟡"
+    },
+    {
+      "titulo": "Spec — Expor identificação do cliente TelOS (não só \"confirmado/não confirmado\")",
+      "status": "Aprovado (31/08/2026) — ver QA Results (re-review) abaixo",
+      "emoji": "✅"
     },
     {
       "titulo": "Mapeamento de queries — Categoria A / Categoria B",
@@ -72,11 +82,11 @@
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-31T11:36:19.371Z",
+    "verificado_em": "2026-08-31T19:58:45.742Z",
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-31T17:49:33.003Z",
+  "atualizado_em": "2026-08-31T19:58:46.952Z",
   "ultima_rodada": {
     "data": "2026-08-31T17:49:33.002Z",
     "sucesso": true,
