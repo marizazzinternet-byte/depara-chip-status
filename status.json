@@ -36,6 +36,11 @@
       "emoji": "🟡"
     },
     {
+      "titulo": "Spec — Melhorar análise de gestão: problema + ação + cobertura real dos 3 sistemas",
+      "status": "Confirmado pelo @data-engineer (28/08/2026, cobertura de `planoCodes` OK — ver seção \"Confirmação do @data-engineer\" no fim) → próximo: @dev implementa",
+      "emoji": "🟡"
+    },
+    {
       "titulo": "Investigação — registros \"só no TelOS\" (sem vínculo com RBX)",
       "status": "✅ Concluído — identidade RBX dos 5 clientes confirmada, nenhuma correção automática aplicada",
       "emoji": "✅"
@@ -59,14 +64,19 @@
       "titulo": "Spec — Página de status do Depara CHIP (dashboard simples)",
       "status": "Implementado pelo @dev (código pronto) — falta provisionamento de infra pelo @devops (ver `docs/specs/status-dashboard-DEVOPS-SETUP.md`) antes de ir ao ar",
       "emoji": "🟡"
+    },
+    {
+      "titulo": "Spec — Melhoria visual das páginas do Depara CHIP",
+      "status": "Ready for UX",
+      "emoji": "🟡"
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-28T12:35:17.416Z",
+    "verificado_em": "2026-08-31T11:36:19.371Z",
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-30T15:09:12.600Z",
+  "atualizado_em": "2026-08-31T11:36:20.441Z",
   "ultima_rodada": {
     "data": "2026-08-30T15:09:12.600Z",
     "sucesso": false,
