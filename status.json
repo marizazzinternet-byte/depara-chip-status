@@ -86,12 +86,12 @@
     "base_chegou": true,
     "lembrete_enviado_em": null
   },
-  "atualizado_em": "2026-08-31T19:58:46.952Z",
+  "atualizado_em": "2026-08-31T20:14:25.219Z",
   "ultima_rodada": {
-    "data": "2026-08-31T17:49:33.002Z",
-    "sucesso": true,
-    "etapa_falha": null,
-    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/33421521263"
+    "data": "2026-08-31T20:14:25.218Z",
+    "sucesso": false,
+    "etapa_falha": "O processamento do depara falhou",
+    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/33433471548"
   },
   "correcoes": {
     "comparado_com_rodada_anterior": true,
