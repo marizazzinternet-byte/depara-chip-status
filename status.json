@@ -82,11 +82,11 @@
     }
   ],
   "lembrete_surf": {
-    "verificado_em": "2026-08-31T19:58:45.742Z",
-    "base_chegou": true,
-    "lembrete_enviado_em": null
+    "verificado_em": "2026-09-04T15:36:52.750Z",
+    "base_chegou": false,
+    "lembrete_enviado_em": "2026-09-04T15:36:52.749Z"
   },
-  "atualizado_em": "2026-09-04T14:58:19.644Z",
+  "atualizado_em": "2026-09-04T15:36:53.776Z",
   "ultima_rodada": {
     "data": "2026-09-04T14:58:19.643Z",
     "sucesso": false,
