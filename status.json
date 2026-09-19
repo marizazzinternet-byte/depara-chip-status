@@ -86,32 +86,45 @@
     "base_chegou": false,
     "lembrete_enviado_em": "2026-09-04T15:36:52.749Z"
   },
-  "atualizado_em": "2026-09-18T15:00:06.962Z",
+  "atualizado_em": "2026-09-19T14:09:06.363Z",
   "ultima_rodada": {
-    "data": "2026-09-18T15:00:06.962Z",
-    "sucesso": false,
-    "etapa_falha": "Nao consegui buscar os dados do RBX/TelOS",
-    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/35358114392"
+    "data": "2026-09-19T14:09:06.362Z",
+    "sucesso": true,
+    "etapa_falha": null,
+    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/35447777341"
   },
   "correcoes": {
     "comparado_com_rodada_anterior": true,
-    "resolvidos": [],
+    "resolvidos": [
+      {
+        "categoria": "Resolvidos por numero de telefone",
+        "quantidade": 1,
+        "de": 61,
+        "para": 60
+      }
+    ],
     "novos": [
       {
+        "categoria": "So no RBX (nao esta na Surf)",
+        "quantidade": 1,
+        "de": 24,
+        "para": 25
+      },
+      {
         "categoria": "Aguardando atualizacao da Surf",
-        "quantidade": 18,
-        "de": 337,
-        "para": 355
+        "quantidade": 6,
+        "de": 355,
+        "para": 361
       }
     ]
   },
   "categorias": {
     "problema_real_sem_rbx": 13,
     "fila_cancelamento_manual": 59,
-    "so_no_rbx": 24,
+    "so_no_rbx": 25,
     "sem_campo_complementar": 1,
-    "resolvidos_telefone": 61,
-    "aguardando_atualizacao_surf": 355,
+    "resolvidos_telefone": 60,
+    "aguardando_atualizacao_surf": 361,
     "trocas_titularidade": 0,
     "chips_duplicados": 0,
     "portout_sem_cancelamento": 0
