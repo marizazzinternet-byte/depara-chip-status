@@ -86,12 +86,12 @@
     "base_chegou": false,
     "lembrete_enviado_em": "2026-09-04T15:36:52.749Z"
   },
-  "atualizado_em": "2026-09-22T15:21:57.221Z",
+  "atualizado_em": "2026-09-23T15:15:47.366Z",
   "ultima_rodada": {
-    "data": "2026-09-22T15:21:57.220Z",
+    "data": "2026-09-23T15:15:47.365Z",
     "sucesso": false,
     "etapa_falha": "Nao consegui buscar os dados do RBX/TelOS",
-    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/35746753292"
+    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/35880172417"
   },
   "correcoes": {
     "comparado_com_rodada_anterior": true,
