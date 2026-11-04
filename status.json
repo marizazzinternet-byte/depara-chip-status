@@ -86,32 +86,38 @@
     "base_chegou": false,
     "lembrete_enviado_em": "2026-10-04T16:18:51.182Z"
   },
-  "atualizado_em": "2026-11-03T18:13:43.537Z",
+  "atualizado_em": "2026-11-04T18:31:02.423Z",
   "ultima_rodada": {
-    "data": "2026-11-03T18:13:43.536Z",
+    "data": "2026-11-04T18:31:02.422Z",
     "sucesso": true,
     "etapa_falha": null,
-    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/41691450871"
+    "run_url": "https://github.com/marizazzinternet-byte/depara-chip-surf/actions/runs/41886560142"
   },
   "correcoes": {
     "comparado_com_rodada_anterior": true,
     "resolvidos": [],
     "novos": [
       {
+        "categoria": "Fila de cancelamento manual",
+        "quantidade": 2,
+        "de": 57,
+        "para": 59
+      },
+      {
         "categoria": "Aguardando atualizacao da Surf",
-        "quantidade": 33,
-        "de": 536,
-        "para": 569
+        "quantidade": 4,
+        "de": 569,
+        "para": 573
       }
     ]
   },
   "categorias": {
     "problema_real_sem_rbx": 13,
-    "fila_cancelamento_manual": 57,
+    "fila_cancelamento_manual": 59,
     "so_no_rbx": 24,
     "sem_campo_complementar": 1,
     "resolvidos_telefone": 60,
-    "aguardando_atualizacao_surf": 569,
+    "aguardando_atualizacao_surf": 573,
     "trocas_titularidade": 0,
     "chips_duplicados": 0,
     "portout_sem_cancelamento": 0
